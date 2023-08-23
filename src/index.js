@@ -3,19 +3,20 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./Navbar";
+import App from "./App";
+import { links } from "./data";
 
-const links = [
-  "https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/video-game-sales-data.json",
-  "https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/kickstarter-funding-data.json",
-  "https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/movie-data.json",
-];
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
       <Navbar />
-      <Routes></Routes>
+      <Routes>
+        {links.map((d) => (
+          <Route exact path={`/${d.name}`} element={<App link={d.link} />} />
+        ))}
+      </Routes>
     </Router>
   </React.StrictMode>
 );
