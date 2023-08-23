@@ -20,8 +20,9 @@
   text-decoration: none;
   color: black;
   font-size: 1.2rem;
+  text-transform: capitalize;
 }
 
-.links ul li .a.active{
-    color: #2966ff;
+.links ul li .a.active {
+  color: #2966ff;
 }

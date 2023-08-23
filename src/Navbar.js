@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
+import { links } from "./data";
 
 const Navbar = () => {
   return (
@@ -10,21 +11,16 @@ const Navbar = () => {
       </div>
       <div className="links">
         <ul>
-          <li>
-            <Link className="a active" to={"/"}>
-              VideoGames
-            </Link>
-          </li>
-          <li>
-            <Link className="a" to={"/"}>
-              Kickstarter
-            </Link>
-          </li>
-          <li>
-            <Link className="a" to={"/"}>
-              Movies
-            </Link>
-          </li>
+          {links.map((d) => {
+            const { id, name } = d;
+            return (
+              <li key={id}>
+                <Link className="a" to={"/" + name}>
+                  {name}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </nav>
