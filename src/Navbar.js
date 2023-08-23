@@ -1,9 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./navbar.css";
 import { links } from "./data";
 
 const Navbar = () => {
+  const location = useLocation();
+
   return (
     <nav className="navbar">
       <div id="title">
@@ -15,7 +17,12 @@ const Navbar = () => {
             const { id, name } = d;
             return (
               <li key={id}>
-                <Link className="a" to={"/" + name}>
+                <Link
+                  className={`a ${
+                    location.pathname.match(/\w+/)[0] === name && "active"
+                  }`}
+                  to={"/" + name}
+                >
                   {name}
                 </Link>
               </li>
