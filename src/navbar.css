@@ -1,0 +1,27 @@
+.navbar {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: 5px solid black;
+  padding: 2rem 0;
+}
+
+.links ul {
+  display: flex;
+  gap: 5rem;
+}
+
+.links ul li {
+  list-style: none;
+}
+
+.links ul li .a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.2rem;
+}
+
+.links ul li .a.active{
+    color: #2966ff;
+}
