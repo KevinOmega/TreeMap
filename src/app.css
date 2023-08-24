@@ -8,9 +8,10 @@
 }
 
 .app-center {
+  position: relative;
   width: 100%;
-  border: 5px solid black;
   height: 75vh;
+  box-shadow: 0 0 1px 5px black;
 }
 
 .group {
@@ -22,4 +23,15 @@
   font-size: 0.5rem;
   width: 100%;
   font-weight: 500;
+  user-select: none;
+}
+
+#tooltip {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  background-color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
 }

@@ -35,19 +35,41 @@ const App = () => {
 
     treeMap(root);
 
+    const tooltip = d3
+      .select(".app-center")
+      .append("div")
+      .attr("id", "tooltip");
+
     const cell = svg
       .selectAll("g")
       .data(root.leaves())
       .enter()
       .append("g")
       .attr("class", "group")
-      .attr("transform", (d) => `translate(${d.x0},${d.y0})`);
+      .attr("transform", (d) => `translate(${d.x0},${d.y0})`)
+      .on("mouseover", (e, d) => {
+        tooltip
+          .html(
+            `Name : ${d.data.name} <br/> Category : ${d.data.category} <br/> Value : ${d.data.value}$`
+          )
+          .style("opacity", 1)
+          .style("top", d.y0 + (d.y1 - d.y0) / 4 + "px")
+          .style("left", d.x1 + "px")
+          .attr("data-value", d.data.value);
+      })
+      .on("mouseout", (e) => {
+        tooltip.style("opacity", 0).style("top", -100 + "px");
+      });
 
     const rect = cell
       .append("rect")
       .attr("width", (d) => d.x1 - d.x0)
       .attr("height", (d) => d.y1 - d.y0)
-      .attr("fill", (d) => color(d.data.category));
+      .attr("fill", (d) => color(d.data.category))
+      .attr("class", "tile")
+      .attr("data-name", (d) => d.data.name)
+      .attr("data-category", (d) => d.data.category)
+      .attr("data-value", (d) => d.data.value);
 
     cell
       .append("text")
@@ -63,6 +85,7 @@ const App = () => {
 
   const remove = () => {
     d3.select(".app-center").select("svg").remove();
+    d3.select(".app-center").select("#tooltip").remove();
   };
 
   useEffect(() => {
