@@ -65,7 +65,7 @@ const App = () => {
         tooltip.style("opacity", 0).style("top", -100 + "px");
       });
 
-    const rect = cell
+    cell
       .append("rect")
       .attr("width", (d) => d.x1 - d.x0)
       .attr("height", (d) => d.y1 - d.y0)
