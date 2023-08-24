@@ -22,7 +22,10 @@ const App = () => {
       .attr("width", "100%")
       .attr("height", "100%")
       .style("background", "white");
-    const color = d3.scaleOrdinal().range(d3.schemeCategory10);
+
+    const color = d3
+      .scaleOrdinal()
+      .range([...d3.schemeTableau10, ...d3.schemeDark2]);
     const width = appRef.current.getBoundingClientRect().width;
     const height = appRef.current.getBoundingClientRect().height;
 
@@ -38,7 +41,8 @@ const App = () => {
     const tooltip = d3
       .select(".app-center")
       .append("div")
-      .attr("id", "tooltip");
+      .attr("id", "tooltip")
+      .style("opacity", 0);
 
     const cell = svg
       .selectAll("g")
@@ -81,11 +85,69 @@ const App = () => {
       .attr("y", (d, i) => 10 + i * 10)
       .attr("x", 3)
       .text((d) => d);
+
+    let categories = root.leaves().map((d) => d.data.category);
+
+    categories = categories.filter(
+      (category, index) => categories.indexOf(category) === index
+    );
+
+    const legendElementSize = 10;
+    const padding = 15;
+    const columns = 3;
+    const columnSpace = 150;
+    const categoriesLength = categories.length;
+    const elementsPerColumn = Math.floor(categoriesLength / columns);
+
+    const legend = d3
+      .select(".app")
+      .append("svg")
+      .attr("id", "legend")
+      .attr(
+        "width",
+        Math.ceil(categoriesLength / elementsPerColumn) * columnSpace * 2 -
+          columnSpace
+      )
+      .attr("height", elementsPerColumn * padding * 2);
+
+    legend
+      .selectAll("rect")
+      .data(categories)
+      .enter()
+      .append("rect")
+      .attr("class", "legend-item")
+      .attr("width", legendElementSize)
+      .attr("height", legendElementSize)
+      .attr("fill", (d) => color(d))
+      .attr("y", (d, i) => (i % elementsPerColumn) * padding * 2)
+      .attr("x", (d, i) => Math.floor(i / elementsPerColumn) * columnSpace * 2);
+
+    legend
+      .selectAll("text")
+      .data(categories)
+      .enter()
+      .append("text")
+      .text((d) => d)
+      .attr(
+        "y",
+        (d, i) => (i % elementsPerColumn) * padding * 2 + legendElementSize
+      )
+      .attr(
+        "x",
+        (d, i) =>
+          Math.floor(i / elementsPerColumn) * columnSpace * 2 +
+          legendElementSize +
+          10
+      );
   }, [data]);
 
   const remove = () => {
-    d3.select(".app-center").select("svg").remove();
-    d3.select(".app-center").select("#tooltip").remove();
+    const app = d3.select(".app-center");
+
+    app.select("svg").remove();
+    app.select("#tooltip").remove();
+
+    d3.select(".app").select("#legend").remove();
   };
 
   useEffect(() => {
