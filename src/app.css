@@ -10,5 +10,9 @@
 .app-center {
   width: 100%;
   border: 5px solid black;
-  min-height: 75vh;
+  height: 75vh;
+}
+
+.group {
+  background-color: red;
 }
