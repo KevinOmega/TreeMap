@@ -4,7 +4,15 @@
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  padding: 5rem 10rem;
+  padding: 3rem 8rem;
+}
+
+#description {
+  text-align: center;
+}
+
+#description h1 {
+  margin-bottom: 0.7rem;
 }
 
 .app-center {
@@ -14,13 +22,9 @@
   box-shadow: 0 0 1px 5px black;
 }
 
-.group {
-  background-color: red;
-}
-
 .tile-text tspan {
   fill: white;
-  font-size: 0.5rem;
+  font-size: 0.6rem;
   width: 100%;
   font-weight: 500;
   user-select: none;

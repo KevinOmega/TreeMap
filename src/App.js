@@ -156,6 +156,7 @@ const App = () => {
 
   useEffect(() => {
     if (data.name) {
+      console.log(data);
       remove();
       drawTreeMap();
     }
@@ -165,6 +166,7 @@ const App = () => {
     <div className="app">
       <div id="description">
         <h1>{category}</h1>
+        <h4>{links.filter((data) => data.name === category)[0].description}</h4>
       </div>
       <div className="app-center" ref={appRef}></div>
     </div>
