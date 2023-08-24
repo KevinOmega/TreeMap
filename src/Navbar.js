@@ -19,7 +19,7 @@ const Navbar = () => {
               <li key={id}>
                 <Link
                   className={`a ${
-                    location.pathname.match(/\w+/)[0] === name && "active"
+                    location.pathname.match(/\w*/g)[1] === name && "active"
                   }`}
                   to={"/" + name}
                 >

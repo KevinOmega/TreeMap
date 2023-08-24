@@ -1,0 +1,14 @@
+.app {
+  background-color: #eaeaea;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 4rem 10rem;
+}
+
+.app-center {
+  width: 100%;
+  border: 5px solid black;
+  min-height: 75vh;
+}

@@ -16,7 +16,7 @@ root.render(
     <Router>
       <Navbar />
       <Routes>
-        <Route exact path="/" element={<Navigate to={"/videogames"} replace />} />
+        <Route exact path="/" element={<Navigate to={"/movies"} replace />} />
         <Route path="/:category" element={<App />} />
       </Routes>
     </Router>
