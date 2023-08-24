@@ -48,6 +48,17 @@ const App = () => {
       .attr("width", (d) => d.x1 - d.x0)
       .attr("height", (d) => d.y1 - d.y0)
       .attr("fill", (d) => color(d.data.category));
+
+    cell
+      .append("text")
+      .attr("class", "tile-text")
+      .selectAll("tspan")
+      .data((d) => d.data.name.split(/(?=[A-Z][^A-Z])/g))
+      .enter()
+      .append("tspan")
+      .attr("y", (d, i) => 10 + i * 10)
+      .attr("x", 3)
+      .text((d) => d);
   }, [data]);
 
   const remove = () => {
